@@ -18,10 +18,10 @@
 - 맞춤형 이미지 생성: 생성형 AI와 OpenCV를 활용한 이미지
 
 ## 🖥 데모
-<img src="https://github.com/user-attachments/assets/2e8e3656-79bb-4070-9dde-2201e95863b8" width="300" height="270"/>
-<img src="https://github.com/user-attachments/assets/7db6880b-22a6-49f6-9a72-fb772c84b1f3" width="300" height="270"/>
-<img src="https://github.com/user-attachments/assets/b926378b-c07f-4afc-91e3-679bf2953bb1" width="300" height="270"/>
-<img src="https://github.com/user-attachments/assets/6552b6ed-7805-42c1-8d97-7669fe165fe1" width="300" height="270"/>
+<img src="https://github.com/user-attachments/assets/2e8e3656-79bb-4070-9dde-2201e95863b8" width="400" height="420"/>
+<img src="https://github.com/user-attachments/assets/7db6880b-22a6-49f6-9a72-fb772c84b1f3" width="400" height="420"/>
+<img src="https://github.com/user-attachments/assets/b926378b-c07f-4afc-91e3-679bf2953bb1" width="400" height="420"/>
+<img src="https://github.com/user-attachments/assets/6552b6ed-7805-42c1-8d97-7669fe165fe1" width="400" height="420"/>
 
 
 
