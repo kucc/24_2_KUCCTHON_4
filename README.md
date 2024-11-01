@@ -18,6 +18,6 @@
 - 맞춤형 이미지 생성: 생성형 AI와 OpenCV를 활용한 이미지
 
 ## 🖥 데모
-<img src="https://github.com/user-attachments/assets/2e8e3656-79bb-4070-9dde-2201e95863b8" width="300" height="310"/>
+<img src="https://github.com/user-attachments/assets/2e8e3656-79bb-4070-9dde-2201e95863b8" width="300" height="305"/>
 
 ## 🗣 멤버
