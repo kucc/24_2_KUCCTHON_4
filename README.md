@@ -64,3 +64,4 @@ if num_lips > 0 and len(lip_images) > 0:
 
 
 ## 🗣 멤버
+김혜미 / 이수형 / 채수 / 김지원
