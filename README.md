@@ -48,6 +48,12 @@ if eye_orientation == 'h':
 for i in range(num_eyes):
     if i < len(eye_images):
         target_image = overlay_image(target_image, eye_images[i], positions[i])
+if num_noses > 0 and len(nose_images) > 0:
+    target_image = overlay_image(target_image, nose_images[0], positions[num_eyes])
+
+if num_lips > 0 and len(lip_images) > 0:
+    for i in range(num_lips):
+        target_image = overlay_image(target_image, lip_images[i], positions[num_eyes + num_noses + i])
 ~~~
 ## 🖥 데모
 <img src="https://github.com/user-attachments/assets/2e8e3656-79bb-4070-9dde-2201e95863b8" width="400" height="360"/>
