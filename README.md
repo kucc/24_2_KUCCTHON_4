@@ -17,7 +17,37 @@
 - 성향 분석 설문: 사용자는 5단계 평가 척도로 다양한 질문에 응답<br/>
 - 맞춤형 이미지 생성: 생성형 AI와 OpenCV를 활용한 이미지
 
-## 
+## 🛠 코드
+OpenCV를 활용한 맞춤형 이미지 생성
+1. 눈 이미지 생성
+
+    for i in range(num_eyes):
+    x, y = features['eye']['coords'][0]
+    w, h = features['eye']['size']
+    subimg = img[x:x + h, y:y + w]
+    eye_images.append(cv2.resize(subimg, (50, 20)))
+
+2. 눈 위치 설정
+
+    if eye_orientation == 'h':
+    for i in range(num_eyes):
+        eye_x = moon_x_center - (50 * num_eyes // 2) + (i * 50)
+        eye_y = moon_y_center - 40
+        positions.append((eye_x, eye_y))
+    elif eye_orientation == 'v':
+      eye_start_y = moon_y_center - (30 * num_eyes // 2)
+      for i in range(num_eyes):
+        eye_x = moon_x_center - 25
+        eye_y = eye_start_y + (i * 30)
+        positions.append((eye_x, eye_y))
+    else:
+      raise ValueError("눈의 방향은 'h' 또는 'v'이어야 합니다.")
+
+3. 타겟 이미지에 특징 오버레이
+
+    for i in range(num_eyes):
+      if i < len(eye_images):
+        target_image = overlay_image(target_image, eye_images[i], positions[i])
 
 ## 🖥 데모
 <img src="https://github.com/user-attachments/assets/2e8e3656-79bb-4070-9dde-2201e95863b8" width="400" height="360"/>
