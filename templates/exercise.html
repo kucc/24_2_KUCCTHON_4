@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>외계인 심리 테스트</title>
+</head>
+<body>
+  <!-- 콘텐츠 컨테이너 -->
+  <div class="container">
+    <!-- 첫 번째 이야기 화면 -->
+    <div id="story1" class="story">
+      <p>눈을 뜨고 일어났더니 외계인이 되어있다.</p>
+      <img src="{{ url_for('static', filename='images/침대외계인.jpg') }}" alt="침대에서 일어나는 외계인">
+      <div class="button-container">
+        <button onclick="showNext('story2')">다음 <span class="arrow">→</span></button>
+      </div>
+    </div>
+    
+    <!-- 두 번째 이야기 화면 -->
+    <div id="story2" class="story hidden">
+      <p>내 모습은 어떨까?</p>
+      <img src="{{ url_for('static', filename='images/거울외계인.jpg') }}" alt="거울을 보는 외계인">
+      <div class="button-container">
+        <button onclick="showNext('test')">다음 <span class="arrow">→</span></button>
+      </div>
+    </div>
+    
+    <!-- 심리 테스트 화면 -->
+    <div id="test" class="story hidden">
+      <h1>성격 테스트</h1>
+      <div class="question-box">
+        <p id="questionText">나는 단체에서 존재감을 드러내고 싶어한다.</p>
+      </div>
+      <form id="testForm">
+        <div class="question">
+          <label for="q1">1: 전혀 그렇지 않다</label>
+          <input type="radio" name="q1" value="1">
+          <input type="radio" name="q1" value="2">
+          <input type="radio" name="q1" value="3">
+          <input type="radio" name="q1" value="4">
+          <input type="radio" name="q1" value="5">
+          <label for="q1">5: 매우 그렇다</label>
+        </div>
+        <div class="button-container-center">
+          <button type="button" onclick="nextQuestion()">다음</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 결과 화면 -->
+    <div id="resultScreen" class="story hidden">
+      <form action="/result" method="post">
+        <button type="submit" id="result" name="result">결과보기</button>
+        <input type="hidden" id="response" name="response" value=2>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript 코드를 HTML 내부에 직접 포함 -->
+  <script>
+    const questions = [
+      "나는 단체에서 존재감을 드러내고 싶어한다.",
+      "나는 감정표현에 서툴다.",
+      "나는 남의 말을 잘 들어준다.",
+      "나는 내가 머리가 나쁘진 않은 편이라고 생각한다.",
+      "사람 얼굴과 이름을 잘 매칭시키는가?"
+    ];
+
+    let currentQuestionIndex = 0;
+    const responses = []; // 각 질문의 답변 점수를 저장
+
+    function showNext(nextId) {
+      document.getElementById("story1").classList.add("hidden");
+      document.getElementById("story2").classList.add("hidden");
+      document.getElementById("test").classList.add("hidden");
+      document.getElementById("resultScreen").classList.add("hidden");
+
+      document.getElementById(nextId).classList.remove("hidden");
+    }
+
+    function nextQuestion() {
+      const radios = document.getElementsByName('q1');
+      let answerSelected = false;
+
+      for (let i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+          answerSelected = true;
+          responses.push(parseInt(radios[i].value));
+          radios[i].checked = false;
+          break;
+        }
+      }
+
+      if (!answerSelected) {
+        alert("답변을 선택해주세요.");
+        return;
+      }
+
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        document.getElementById('questionText').textContent = questions[currentQuestionIndex];
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      document.getElementById('test').classList.add('hidden');
+      document.getElementById('resultScreen').classList.remove('hidden');
+      document.getElementById("response").value=responses;
+      generateAlien();
+    }
+
+    function generateAlien() {
+      const alienContainer = document.getElementById("alienImage");
+      alienContainer.innerHTML = '<img src="images/외계인정면샷.png" alt="외계인정면샷" id="baseAlien">'; // 기본 외계인 이미지
+
+      // 코 생성
+      for (let i = 0; i < responses[0]; i++) {
+        const nose = document.createElement("div");
+        nose.className = "feature nose";
+        nose.style.left = `${48 + i * 5}%`; // 코 위치 조정
+        alienContainer.appendChild(nose);
+      }
+
+      // 입 생성
+      const mouth = document.createElement("div");
+      mouth.className = "feature mouth";
+      mouth.style.width = `${30 + (5 - responses[1]) * 10}px`; // 점수에 따라 입 크기 조정
+      alienContainer.appendChild(mouth);
+
+      // 귀 생성
+      const leftEar = document.createElement("div");
+      leftEar.className = "feature ear left-ear";
+      leftEar.style.width = `${10 + responses[2] * 5}px`;
+      alienContainer.appendChild(leftEar);
+
+      const rightEar = document.createElement("div");
+      rightEar.className = "feature ear right-ear";
+      rightEar.style.width = `${10 + responses[2] * 5}px`;
+      alienContainer.appendChild(rightEar);
+
+      // 머리 생성
+      for (let i = 0; i < responses[3]; i++) {
+        const head = document.createElement("div");
+        head.className = "feature head";
+        head.style.top = `${10 + i * 5}%`;
+        head.style.left = `${40 + i * 10}%`;
+        alienContainer.appendChild(head);
+      }
+
+      // 눈 생성
+      for (let i = 0; i < responses[4]; i++) {
+        const eye = document.createElement("div");
+        eye.className = "feature eye";
+        eye.style.left = `${35 + i * 5}%`;
+        alienContainer.appendChild(eye);
+      }
+    }
+  </script>
+</body>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.story p {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.story img {
+  max-width: 500px;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.button-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.button-container-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+.question-box {
+  border: 2px solid #666;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+.question-box p {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+#alienImage {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: auto;
+}
+
+.feature {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.eye {
+  background-color: yellow;
+}
+
+.nose {
+  background-color: red;
+}
+
+.mouth {
+  background-color: blue;
+}
+
+.ear {
+  background-color: green;
+  border-radius: 50%;
+}
+
+
+</style>
+</html>

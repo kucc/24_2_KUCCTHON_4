@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>외계인 심리 테스트</title>
+</head>
+<body>
+    <div class="container">
+        <!-- 결과 화면 -->
+        <div id="resultScreen">
+            <h1 id="title">외계인 탄생!</h1>
+            <div id="alienImage">
+              <!-- 기본 외계인 이미지 -->
+              <img src={{ img_url }} alt="외계인정면샷" id="baseAlien1">
+              <img src="{{ url_for('static', filename='images/final1.jpg') }}" alt="외계인정면샷" id="baseAlien2" class="hidden">
+            </div>
+            <p id="para">당신의 선택에 따라 이런 모습으로 외계인으로 태어났습니다!</p>
+            <div class="button-container">
+              <button onclick="showNext('baseAlien2')" id="next_button">다음 <span class="arrow">→</span></button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+  function showNext(nextId) {
+      document.getElementById('baseAlien1').classList.add('hidden');
+      document.getElementById('next_button').classList.add('hidden');
+      document.getElementById(nextId).classList.remove('hidden');
+
+      document.getElementById('title').classList.add('hidden');
+      document.getElementById('para').classList.add('hidden');
+  }
+</script>
+<style>
+    /* ��ü ��� ���� */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.story p {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.story img {
+  max-width: 500px;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.button-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.button-container-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+.question-box {
+  border: 2px solid #666;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+.question-box p {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+#baseAlien1 {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: auto;
+}
+
+#baseAlien2 {
+  position: relative;
+  width: 670px;
+  height: 650px;
+  margin: auto;
+}
+
+.feature {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.eye {
+  background-color: yellow;
+}
+
+.nose {
+  background-color: red;
+}
+
+.mouth {
+  background-color: blue;
+}
+
+.ear {
+  background-color: green;
+  border-radius: 50%;
+}
+
+
+</style>

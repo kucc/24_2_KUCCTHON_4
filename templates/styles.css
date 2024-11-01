@@ -1,0 +1,106 @@
+/* 전체 배경 설정 */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+  background-color: black;
+  background-image: url('images/우주.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.story p {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.story img {
+  max-width: 500px;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.button-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.button-container-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+.question-box {
+  border: 2px solid #666;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+.question-box p {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+#alienImage {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: auto;
+}
+
+.feature {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.eye {
+  background-color: yellow;
+}
+
+.nose {
+  background-color: red;
+}
+
+.mouth {
+  background-color: blue;
+}
+
+.ear {
+  background-color: green;
+  border-radius: 50%;
+}
+
