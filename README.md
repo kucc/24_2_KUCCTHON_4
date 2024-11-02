@@ -60,7 +60,10 @@ if num_lips > 0 and len(lip_images) > 0:
 <img src="https://github.com/user-attachments/assets/b926378b-c07f-4afc-91e3-679bf2953bb1" width="400" height="360"/>
 <img src="https://github.com/user-attachments/assets/6552b6ed-7805-42c1-8d97-7669fe165fe1" width="400" height="360"/>
 
-
+## 확장 가능성
+1. 사용자의 실제 외형을 기반으로 외계인 캐릭터를 제공하는 기능
+2. 외계인 캐릭터를 사용자의 실시간 영상에 적용하는 기능
+3. 외계인 이상형 월드컵
 
 ## 🗣 멤버
 김혜미 / 이수형 / 채수 / 김지원
